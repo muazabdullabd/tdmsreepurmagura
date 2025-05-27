@@ -1,0 +1,1508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Website Layout</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2&display=swap" rel="stylesheet"> 
+   
+
+    <style>
+        /* General Body Styles */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        /* Top Bar Styling */
+        .top-bar {
+            background-color: #0d47a1; /* Dark blue background */
+            color: white;
+            padding: 8px 0;
+            font-size: 14px;
+            display: flex;
+            justify-content: flex-end; /* Links to the right */
+            align-items: center;
+        }
+
+        .top-bar-content {
+            margin-right: 20px;
+        }
+
+        .top-bar-content .top-link {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-family: 'Josefin Sans', sans-serif;
+    		font-weight: 400;
+            font-weight: bold;
+            font-size: 15px;
+        }
+
+        .top-bar-content .top-link i {
+            margin-right: 5px;
+        }
+
+        /* Header/Navigation Bar Styling */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo img {
+            height: 100px; /* লোগোর উচ্চতা */
+            width: auto;
+        }
+
+        .main-nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .main-nav ul li {
+            position: relative; /* Dropdown এর জন্য */
+            margin-right: 25px;
+        }
+
+        .main-nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-family: 'Josefin Sans', sans-serif;
+    		font-weight: 800;
+            font-weight: bold;
+            font-size: 20px;
+            padding: 10px 0;
+            display: block;
+            transition: color 0.3s ease;
+        }
+
+        .main-nav ul li a:hover,
+        .main-nav ul li a.active {
+            color: #0d47a1; /* Hover এবং Active link color */
+        }
+
+        /* Dropdown Menu Styling */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-top: 3px solid #0d47a1; /* Blue line above dropdown */
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+            font-weight: normal;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #ddd;
+            color: #0d47a1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .search-icon {
+            font-size: 20px;
+            color: #333;
+            cursor: pointer;
+        }
+
+        /* Slider Section Styling (Hero Slider) */
+        .hero-slider {
+            width: 100%;
+            margin-top: 0; /* মেনুর নিচে সরাসরি স্লাইডার */
+        }
+
+        .slider-container {
+            position: relative;
+            width: 100%;
+            max-height: 500px; /* স্লাইডারের উচ্চতা নিয়ন্ত্রণ করুন */
+            overflow: hidden;
+            /* আপনার ছবিতে ছবির নিচে একটি গ্রাডিয়েন্ট ওভারলে আছে, সেটি যোগ করতে পারেন */
+            /* background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 100%); */
+        }
+
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out; /* স্লাইড ট্রানজিশন */
+        }
+
+        .slider img {
+            width: 100%;
+            height: auto;
+            object-fit: cover; /* ছবিগুলোকে কন্টেনারের সাথে মানানসই করে */
+            display: block;
+            flex-shrink: 0; /* ছবিগুলো সংকুচিত হওয়া আটকায় */
+        }
+
+        .prev-button,
+        .next-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 15px 20px; /* বাটন সাইজ */
+            cursor: pointer;
+            font-size: 30px; /* অ্যারোর সাইজ */
+            border-radius: 5px;
+            z-index: 100;
+        }
+
+        .prev-button {
+            left: 20px;
+        }
+
+        .next-button {
+            right: 20px;
+        }
+
+        .prev-button:hover,
+        .next-button:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .dots-container {
+            position: absolute;
+            bottom: 20px; /* নিচে থেকে ডটগুলোর দূরত্ব */
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px; /* ডটগুলোর মাঝের দূরত্ব */
+            z-index: 100;
+        }
+
+        .dot {
+            height: 14px; /* ডটের সাইজ */
+            width: 14px;
+            background-color: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            display: inline-block;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .dot.active {
+            background-color: #0d47a1; /* Active dot color */
+        }
+
+        .slider-text-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%); /* টেক্সটের নিচে শ্যাডো */
+            color: white;
+            padding: 40px 20px 20px 20px; /* Padding for the text */
+            box-sizing: border-box;
+            text-align: left; /* টেক্সট বাম দিকে সারিবদ্ধ */
+            font-family: 'Josefin Sans', sans-serif;
+    		font-weight: 500;
+            font-size: 2.5em; /* ফন্ট সাইজ বড় করুন */
+            font-weight: bold;
+        }
+
+        /* General container for the Important Updates & Top Achievers section */
+        .updates-achievers-section {
+            padding: 40px 20px;
+            background-color: #eef3f7; /* Light blue background as in your image */
+        }
+
+        .updates-achievers-section .container {
+            max-width: 1200px; /* Adjust as needed */
+            margin: 0 auto;
+            display: flex;
+            gap: 30px; /* Space between the two columns */
+            flex-wrap: wrap; /* Allows columns to wrap on smaller screens */
+        }
+
+        /* Left Column: Updates & News */
+        .updates-column {
+        font-family: 'Josefin Sans', sans-serif;
+    		font-weight: 500;
+    		font-weight: bold;
+            font-size: 40px;
+            flex: 2; /* Takes more space than the achievers column */
+            min-width: 300px; /* Minimum width before wrapping */
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .updates-column .section-header {
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .updates-column .section-header h2 {
+            color: #0d47a1; /* Dark blue title */
+            font-size: 28px;
+            margin-top: 0;
+            margin-bottom: 5px;
+        }
+
+        .updates-column .section-header p {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 0;
+        }
+
+        .updates-table-container {
+            width: 100%;
+            overflow-x: auto; /* For responsive tables on small screens */
+        }
+
+        .updates-table-container table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 15px;
+        }
+
+        .updates-table-container th,
+        .updates-table-container td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .updates-table-container th {
+            background-color: #f8f8f8;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .updates-table-container tbody tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        .updates-table-container .download-link {
+            color: #0d47a1;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .updates-table-container .download-link:hover {
+            text-decoration: underline;
+        }
+
+        .view-all-notice-btn {
+            display: inline-block;
+            background-color: #0d47a1;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .view-all-notice-btn:hover {
+            background-color: #0a3d8c;
+        }
+
+        .view-all-notice-btn i {
+            margin-left: 8px;
+        }
+
+
+        /* Right Column: Top Achievers */
+        .achievers-column {
+        	font-family: 'Josefin Sans', sans-serif;
+    		font-weight: 500;
+            font-size: 20px;
+            flex: 1; /* Takes less space */
+            min-width: 280px; /* Minimum width before wrapping */
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            display: flex; /* Vertically center content if needed */
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            text-align: center;
+        }
+
+        .achievers-card {
+            width: 100%;
+        }
+
+        .card-image-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 75%; /* 4:3 aspect ratio (height is 75% of width) */
+            background-color: #ddd; /* Placeholder background */
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .card-image-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .card-image-container .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 50px;
+            cursor: pointer;
+            z-index: 10;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .card-image-container .play-button:hover {
+            opacity: 1;
+        }
+
+        .achievers-card h3 {
+            color: #0d47a1;
+            font-size: 24px;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .achievers-card p {
+            color: #555;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        /* Key Figures Section Styling */
+        .key-figures-section {
+            background-color: #f0f8ff; /* Light blue background as in the image */
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .key-figures-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap; /* Allows items to wrap on smaller screens */
+            font-family: 'Josefin Sans', sans-serif;
+    		font-weight: 500;
+    		font-weight: bold;
+            font-size: 20px;
+            gap: 30px; /* Space between items */
+        }
+
+        .key-figure-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            flex: 1; /* Distributes space evenly */
+            min-width: 150px; /* Minimum width for each item */
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #ffffff; /* White background for each card */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08); /* Subtle shadow */
+            position: relative; /* For the wavy background */
+        }
+
+        /* Wavy pattern for the first item */
+        .key-figure-item:first-child::before {
+            content: '';
+            position: absolute;
+            top: -20px; /* Adjust as needed to position the wave */
+            left: -20px; /* Adjust as needed */
+            width: 120px; /* Size of the wavy circle */
+            height: 120px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><filter id="wavy-blur" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur"></feGaussianBlur></filter></defs><path fill="%23e0efff" d="M0,50 C25,25 75,75 100,50 L100,100 L0,100 Z" filter="url(%23wavy-blur)"></path><path fill="%23d0e7ff" d="M0,50 C20,70 80,30 100,50 L100,100 L0,100 Z" filter="url(%23wavy-blur)"></path></svg>');
+            background-size: contain;
+            background-repeat: no-repeat;
+            z-index: 0; /* Behind content */
+            opacity: 0.7; /* Slightly transparent */
+        }
+
+
+        .key-figure-item i {
+            font-size: 50px; /* Icon size */
+            color: #0d47a1; /* Blue color for icons */
+            margin-bottom: 15px;
+            z-index: 1; /* Ensure icon is above wave */
+        }
+
+        .key-figure-item .count {
+            font-size: 38px;
+            font-weight: bold;
+            color: #0d47a1; /* Blue color for numbers */
+            margin-bottom: 5px;
+            z-index: 1;
+        }
+
+        .key-figure-item .label {
+            font-size: 16px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            z-index: 1;
+        }
+
+        /* History Section Styling */
+        .history-section {
+            padding: 60px 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 40px; /* Space before next main content */
+        }
+
+        .history-section .container {
+        font-family: 'Exo 2', sans-serif;
+    font-weight: 300;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            gap: 40px; /* Space between image and text */
+            align-items: center; /* Vertically align items */
+            flex-wrap: wrap; /* Allow columns to wrap on smaller screens */
+        }
+
+        .history-image-column {
+            flex: 1;
+            min-width: 300px; /* Minimum width before wrapping */
+            text-align: center; /* Center the image and caption */
+        }
+
+        .history-image-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 60%; /* Aspect ratio (e.g., 5:3 or 16:9 for videos) */
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #eee; /* Placeholder background */
+        }
+
+        .history-image-wrapper img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .history-image-wrapper .play-icon-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 60px;
+            cursor: pointer;
+            z-index: 10;
+            opacity: 0.9;
+            transition: opacity 0.3s ease;
+        }
+
+        .history-image-wrapper .play-icon-overlay:hover {
+            opacity: 1;
+        }
+
+        .image-caption {
+            font-size: 15px;
+            color: #555;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        .history-text-column {
+            flex: 2; /* Takes more space */
+            min-width: 300px; /* Minimum width before wrapping */
+        }
+
+        .history-text-column h2 {
+            font-size: 36px;
+            color: #333;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .history-text-column h2 span {
+            color: #0d47a1; /* "Tejgaon College" part blue */
+        }
+
+        .history-text-column p {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #444;
+            margin-bottom: 25px;
+            text-align: justify; /* Justify text as in image */
+        }
+
+        .read-more-btn {
+            display: inline-block;
+            background-color: #ffc107; /* Yellow button */
+            color: #333;
+            padding: 12px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .read-more-btn:hover {
+            background-color: #e0a800; /* Darker yellow on hover */
+        }
+
+        /* Faculty Members Slider Section Styling */
+        .faculty-members-section {
+            padding: 60px 20px;
+            background-color: #eef3f7; /* Light background */
+            text-align: center;
+        }
+
+        .faculty-members-section h2 {
+            color: #0d47a1;
+            font-size: 32px;
+            margin-bottom: 10px;
+            font-family: 'Josefin Sans', sans-serif;
+    		font-weight: 500;
+    		font-weight: bold;
+        }
+
+        .faculty-members-section p {
+            color: #666;
+            font-family: 'Josefin Sans', sans-serif;
+    		font-weight: 500;
+    		font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 40px;
+        }
+
+        .faculty-slider-container {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            overflow: hidden; /* Hide overflowing faculty cards */
+            padding: 20px 0; /* Space for shadow/navigation */
+        }
+
+        .faculty-slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            /* Ensures continuous looping effect */
+            will-change: transform;
+        }
+
+        .faculty-card {
+            flex-shrink: 0; /* Prevents cards from shrinking */
+            width: 250px; /* Each card width (adjust as needed) */
+            margin: 0 15px; /* Spacing between cards */
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .faculty-card img {
+            width: 100px;
+            height: 120px;
+            border-radius: 5%;
+            object-fit: cover;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            border: 3px solid #0d47a1; /* Border around image */
+        }
+
+        .faculty-card h3 {
+        font-family: 'Josefin Sans', sans-serif;
+    		font-weight: 500;
+    		font-weight: bold;
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .faculty-card p {
+        font-family: 'Exo 2', sans-serif;
+    font-weight: 300;
+            font-size: 15px;
+            color: #666;
+            margin-bottom: 0;
+        }
+
+        .faculty-slider-nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.4);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 24px;
+            border-radius: 50%;
+            z-index: 100;
+            transition: background-color 0.3s ease;
+        }
+
+        .faculty-slider-nav-button:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        .faculty-prev-button {
+            left: 0;
+        }
+
+        .faculty-next-button {
+            right: 0;
+        }
+
+        /* Footer Styling */
+        .footer {
+            background-color: #060270; /* Dark blue background */
+            color: white;
+            padding: 60px 20px 20px 20px; /* Adjusted padding */
+            font-size: 15px;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap; /* Allows columns to wrap */
+            gap: 40px; /* Space between columns */
+        }
+
+        .footer-column {
+            flex: 1; /* Distributes space evenly */
+            min-width: 250px; /* Minimum width before wrapping */
+        }
+
+        .footer-column h3 {
+            color: #ffffff;
+            font-size: 20px;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px; /* Space for underline */
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px; /* Underline width */
+            height: 3px;
+            background-color: #ffc107; /* Yellow underline */
+        }
+
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column ul li a:hover {
+            color: #ffc107; /* Yellow on hover */
+        }
+
+        /* Google Map Styling */
+        .map-container {
+            width: 100%;
+            height: 200px; /* Fixed height for the map */
+            border-radius: 8px;
+            overflow: hidden;
+            margin-top: 15px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .view-larger-map {
+            color: #ffc107;
+            text-decoration: none;
+            font-size: 14px;
+            margin-top: 10px;
+            display: inline-block;
+        }
+        .view-larger-map:hover {
+            text-decoration: underline;
+        }
+
+        /* Newsletter Styling */
+        .newsletter-form {
+            display: flex;
+            margin-top: 15px;
+        }
+
+        .newsletter-form input[type="email"] {
+            flex-grow: 1;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 5px 0 0 5px;
+            outline: none;
+            font-size: 15px;
+        }
+
+        .newsletter-form button {
+            background-color: #ffc107; /* Yellow subscribe button */
+            color: #333;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .newsletter-form button:hover {
+            background-color: #e0a800;
+        }
+
+        .social-icons {
+            margin-top: 25px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: 20px;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: #ffc107;
+        }
+
+        .footer-call {
+            margin-top: 25px;
+            font-size: 18px;
+        }
+
+        .footer-call span {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: #ccc;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+        }
+
+        .footer-bottom a {
+            color: #ffc107;
+            text-decoration: none;
+        }
+        
+        .footer-bottom a:hover {
+    color: nevy blue; /* A slightly different color on hover */
+    text-decoration: underline;
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .updates-achievers-section .container,
+            .history-section .container {
+                flex-direction: column;
+            }
+            .updates-column,
+            .achievers-column,
+            .history-image-column,
+            .history-text-column {
+                flex: none; /* Remove flex sizing */
+                width: 100%;
+            }
+            .history-image-wrapper {
+                margin-bottom: 20px;
+            }
+            .history-text-column h2 {
+                font-size: 30px;
+                text-align: center;
+            }
+            .history-text-column p {
+                text-align: left; /* Keep text left-aligned for readability */
+            }
+
+            .key-figure-item {
+                min-width: 120px; /* Smaller min-width for items */
+                padding: 15px;
+            }
+
+            .key-figure-item i {
+                font-size: 40px;
+            }
+
+            .key-figure-item .count {
+                font-size: 30px;
+            }
+
+            .key-figure-item .label {
+                font-size: 14px;
+            }
+
+            .faculty-card {
+                width: 200px; /* Smaller cards on smaller screens */
+                margin: 0 10px;
+            }
+
+            .footer-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .footer-column {
+                text-align: center;
+                min-width: unset;
+                width: 100%; /* Full width on small screens */
+            }
+            .footer-column h3::after {
+                left: 50%; /* Center underline */
+                transform: translateX(-50%);
+            }
+            .newsletter-form {
+                justify-content: center;
+            }
+            .social-icons {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .updates-column,
+            .achievers-column {
+                padding: 20px;
+            }
+            .updates-column .section-header h2 {
+                font-size: 24px;
+            }
+            .achievers-card h3 {
+                font-size: 20px;
+            }
+            .updates-table-container th,
+            .updates-table-container td {
+                padding: 8px 10px;
+                font-size: 14px;
+            }
+            .key-figure-item {
+                min-width: 100px; /* Even smaller on tiny screens */
+                padding: 10px;
+            }
+            .key-figure-item i {
+                font-size: 35px;
+            }
+            .key-figure-item .count {
+                font-size: 28px;
+            }
+            .key-figure-item .label {
+                font-size: 12px;
+            }
+            .faculty-card {
+                width: 180px; /* Even smaller cards */
+                margin: 0 8px;
+            }
+            .faculty-members-section h2 {
+                font-size: 28px;
+            }
+            .faculty-members-section p {
+                font-size: 16px;
+            }
+            .newsletter-form input[type="email"],
+            .newsletter-form button {
+                padding: 10px 12px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <div class="top-bar-content">
+            <a href="#" class="top-link"><i class="fas fa-user-graduate"></i>Student Login</a>
+            <a href="#" class="top-link"><i class="fas fa-university"></i>Madrasha Portal</a>
+            <a href="#" class="top-link"><i class="fas fa-search"></i> Find Department</a>
+        </div>
+    </div>
+
+    <header class="header">
+        <div class="logo">
+            <img src="https://i.postimg.cc/g0Qy7Mkk/TDM-logo.png" alt="Your Logo"> </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="#" class="active">Home</a></li>
+                <li class="dropdown">
+                    <a href="#">About us <i class="fas fa-caret-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="#">Mission</a>
+                        <a href="#">Vision</a>
+                        <a href="#history-section">History</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#">Authority <i class="fas fa-caret-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="#faculty-section">Head Of The Institute</a>
+                        <a href="#faculty-section">Teachers</a>
+                        <a href="#faculty-section">Employees</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#">Departments<i class="fas fa-caret-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="#">Science</a>
+                        <a href="#">Arts</a>
+                        <a href="#">Commerce</a>
+                    </div>
+                </li>
+                
+                <li><a href='#faculty-section'>Facilities</a></li>
+                <li><a href='#'>Alumni</a></li>
+                <li><a href='#contact'>Contact us</a></li>
+                
+                <li class="dropdown">
+                    <a href="#">More<i class="fas fa-caret-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="#">Gallery</a>
+                        <a href="#">Sports</a>
+                        <a href="#">Coming Event</a>
+                    </div>
+                </li>
+                
+               
+               
+            </ul>
+        </nav>
+        <div class="search-icon">
+            <i class="fas fa-search"></i>
+        </div>
+    </header>
+
+    <section class="hero-slider">
+        <div class="slider-container">
+            <div class="slider">
+                <img src="https://ssl.du.ac.bd/fontView/images/slider/17327915000Untitled-1.jpg" alt="Family of 30,000+ Students">
+                <img src="https://th.bing.com/th/id/R.c39b0e06899b3bc8f713a66d53bc2f01?rik=vPTVqpkQCPTwNg&pid=ImgRaw&r=0" alt="Another Campus View">
+                <img src="https://ssl.du.ac.bd/fontView/images/slider/174469652517327915000Untitled-1.jpg" alt="Student Activities">
+                <img src="https://th.bing.com/th/id/OIP.FBvwjFGSNTgGbavMzThvJwHaE8?w=600&h=400&rs=1&pid=ImgDetMain" alt="Auditorium View">
+                <img src="https://th.bing.com/th/id/OIP.sjejaVyksLAiR8y7VR4XPAHaEV?rs=1&pid=ImgDetMain" alt="Academic Excellence">
+            </div>
+
+            <button class="prev-button">&#10094;</button>
+            <button class="next-button">&#10095;</button>
+
+            <div class="dots-container">
+                <span class="dot active" data-slide="0"></span>
+                <span class="dot" data-slide="1"></span>
+                <span class="dot" data-slide="2"></span>
+                <span class="dot" data-slide="3"></span>
+                <span class="dot" data-slide="4"></span>
+            </div>
+            <div class="slider-text-overlay">
+                <h2>Family of 400+ Students</h2>
+            </div>
+        </div>
+    </section>
+
+    <section class="updates-achievers-section">
+        <div class="container">
+            <div class="updates-column">
+                <div class="section-header">
+                    <h2>Important Updates & News</h2>
+                    <p>Stay Informed with the Latest updates & news</p>
+                </div>
+                <div class="updates-table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>SL NO.</th>
+                                <th>Topic</th>
+                                <th>Date</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>NOC for Afsana Shirin, Assistant Professor, Dept of Bangla.</td>
+                                <td>May 26, 2025</td>
+                                <td><a href="#" class="download-link">Download</a></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>NOC for Nasrin Jahan</td>
+                                <td>May 26, 2025</td>
+                                <td><a href="#" class="download-link">Download</a></td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>২০২৩-২৪ শিক্ষাবর্ষের ম্যান্টর্স (শেষ পর্ব) ভর্তির নোটিশ</td>
+                                <td>May 22, 2025</td>
+                                <td><a href="#" class="download-link">Download</a></td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>বোর্ড বৃত্তির টাকা প্রাপ্তি সংক্রান্ত জরুরি বিজ্ঞপ্তি</td>
+                                <td>Apr 24, 2025</td>
+                                <td><a href="#" class="download-link">Download</a></td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>23-04-2025 ও 24-04-2025 তারিখের ক্লাস স্থগিতের নোটিশ</td>
+                                <td>Apr 23, 2025</td>
+                                <td><a href="#" class="download-link">Download</a></td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>পহেলা বৈশাখ ১৪৩২ উদযাপন অনুষ্ঠানে উপস্থিত থাকার বিজ্ঞপ্তি</td>
+                                <td>Apr 9, 2025</td>
+                                <td><a href="#" class="download-link">Download</a></td>
+                            </tr>
+                            <tr>
+                                <td>7</td>
+                                <td>এসএসসি অর্ধ-বার্ষিকীর ফলাফল</td>
+                                <td>Apr 6, 2025</td>
+                                <td><a href="#" class="download-link">Download</a></td>
+                            </tr>
+                             <tr>
+                                <td>8</td>
+                                <td>প্রোগ্রাম-এর একজন অভিজ্ঞ শিক্ষক, প্রোগ্রাম-এম ও ফায়জু</td>
+                                <td>Mar 24, 2025</td>
+                                <td><a href="#" class="download-link">Download</a></td>
+                            </tr>
+                             <tr>
+                                <td>9</td>
+                                <td>NOC for Faria Sultana (2025-03-23)</td>
+                                <td>Mar 24, 2025</td>
+                                <td><a href="#" class="download-link">Download</a></td>
+                            </tr>
+                             <tr>
+                                <td>10</td>
+                                <td>MUNIMUN SHAHA (2025-03-23)</td>
+                                <td>Mar 24, 2025</td>
+                                <td><a href="#" class="download-link">Download</a></td>
+                            </tr>
+                            </tbody>
+                    </table>
+                    <a href="#" class="view-all-notice-btn">View All Notice <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div class="achievers-column">
+                <div class="achievers-card">
+                    <div class="card-image-container">
+                        <img src="https://th.bing.com/th/id/R.c39b0e06899b3bc8f713a66d53bc2f01?rik=vPTVqpkQCPTwNg&pid=ImgRaw&r=0" alt="Top Achievers"> <div class="play-button"><i class="fas fa-play-circle"></i></div>
+                    </div>
+                    <h3>Top Achievers of Takhilpur Hatem Ali Mia Dakhil Madrasha.</h3>
+                    <p>Celebrate the success of our top achievers with this highlight video, showcasing their dedication, hard work, and outstanding results. Witness the excellence that defines Dhaka College!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="key-figures-section">
+        <div class="key-figures-container">
+            <div class="key-figure-item">
+                <i class="fas fa-university"></i> <div class="count">1980</div>
+                <div class="label">FOUNDED</div>
+            </div>
+            <div class="key-figure-item">
+                <i class="fas fa-book-reader"></i> <div class="count">15</div>
+                <div class="label">FACULTIES</div>
+            </div>
+            <div class="key-figure-item">
+                <i class="fas fa-boxes"></i> <div class="count">03</div>
+                <div class="label">DEPARTMENT</div>
+            </div>
+            <div class="key-figure-item">
+                <i class="fas fa-user-tie"></i> <div class="count">03</div>
+                <div class="label">ACADEMIC STAFF</div>
+            </div>
+            <div class="key-figure-item">
+                <i class="fas fa-users"></i> <div class="count">2,500</div>
+                <div class="label">STUDENTS</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="history-section" id="history-section">
+        <div class="container">
+            <div class="history-image-column">
+                <div class="history-image-wrapper">
+                    <img src="https://th.bing.com/th/id/OIP.sjejaVyksLAiR8y7VR4XPAHaEV?rs=1&pid=ImgDetMain" alt="Tejgaon College Building"> <div class="play-icon-overlay"><i class="fas fa-play-circle"></i></div>
+                </div>
+                <p class="image-caption">Takhilpur Hatem Ali Mia Dakhil Madrasha.</p>
+            </div>
+            <div class="history-text-column">
+                <h2>The History of <span>Takhilpur Hatem Ali Mia Dakhil Madrasha.</span></h2>
+                <p>Popularly known Tejgaon College was primarily founded as Dhaka Night College in the year 1961 in the campus of Islamia High School beside the river Buriganga. The college was framed under the true & sincere effort made by Late Maulana Abul Khair. That time the name of the founder president of the college was the then education minister Mr. Shafiqul Islam, Advocate Bahauddin Ahmed & Advocate Mr. Abul Hossain were included as the members. During their tenure, the teachers were used to teach the students with a scarce amount of remuneration, it was just 50 Tk. per month.</p>
+                <a href="#" class="read-more-btn">Read More</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="faculty-members-section">
+        <h2>Our Faculty Members</h2>
+        <p>Meet the dedicated team of educators who shape the future of our students.</p>
+
+        <div class="faculty-slider-container" id="faculty-section">
+            <div class="faculty-slider">
+                <div class="faculty-card">
+                    <img src="https://i.postimg.cc/9Qj02jp3/Jinna.jpg" alt="Teacher Name">
+                    <h3>Mohammad Ali Jinnah</h3>
+                    <p>Principal</p>
+                    
+                </div>
+                <div class="faculty-card">
+                    <img src="https://i.postimg.cc/Y059hcBW/Jahirul.jpg" alt="Teacher Name">
+                    <h3>Md: Jahorul Islam</h3>
+                    <p>Assistant Principal</p>
+                </div>
+                <div class="faculty-card">
+                    <img src="https://i.postimg.cc/TwPhsqcp/Anowar.jpg" alt="Teacher Name">
+                    <h3>Md: Anowar Hosen</h3>
+                    <p>Assistant Senior Maulana</p>
+                </div>
+                <div class="faculty-card">
+                    <img src="https://i.postimg.cc/nzwMfjdT/Ibrahim.jpg" alt="Teacher Name">
+                    <h3>Md: Ibrahim Kholil</h3>
+                    <p>Assistant Senior Maulana</p>
+                </div>
+                <div class="faculty-card">
+                    <img src="https://i.postimg.cc/QVZ8jpcg/Nazrul.jpg" alt="Teacher Name">
+                    <h3>Najrul Islam</h3>
+                    <p>Assistant Senior Maulana</p>
+                </div>
+                <div class="faculty-card">
+                    <img src="https://i.postimg.cc/rpjKgYxB/Alim.jpg" alt="Teacher Name">
+                    <h3>Abdul Alim Jorder</h3>
+                    <p>Senior Teacher (English)</p>
+                </div>
+                <div class="faculty-card">
+                    <img src="https://i.postimg.cc/GmcBYCsF/Papia.jpg" alt="Teacher Name">
+                    <h3>Nur-Un-Nahar Papiya</h3>
+                    <p>Senior Teacher (Bangla)</p>
+                </div>
+                <div class="faculty-card">
+                    <img src="https://i.postimg.cc/q71v26d0/Mijan.jpg" alt="Teacher Name">
+                    <h3>Joyardar Abu Mijan</h3>
+                    <p>Assistant Senior Teacher (Agc..)</p>
+                </div>
+                <div class="faculty-card">
+                    <img src="https://i.postimg.cc/Bv4jTGL5/Forid.jpg" alt="Teacher Name">
+                    <h3>Md: Foridul Islam</h3>
+                    <p>Senior Teacher (Mathmatics)</p>
+                </div>
+                <div class="faculty-card">
+                    <img src="https://i.postimg.cc/kGbMrjRX/Momotaj" alt="Teacher Name">
+                    <h3>MOmotaj Parvin</h3>
+                    <p>Assistant Teacher (Computer)</p>
+                </div>
+                <div class="faculty-card">
+                    <img src="https://i.postimg.cc/Ss5Qv0sv/Monir.jpg" alt="Teacher Name">
+                    <h3>Monirujjaman (Monir)</h3>
+                    <p>Assastant Teacher (Exercise)</p>
+                </div>
+                <div class="faculty-card">
+                    <img src="https://i.postimg.cc/SR2RSS34/jahid.jpg" alt="Teacher Name">
+                    <h3>Md: Jahidur Rahman Miya</h3>
+                    <p>Head Of Ebtedayi</p>
+                </div>
+                <div class="faculty-card">
+                    <img src="https://i.postimg.cc/4xzKH3dN/Asad.jpg" alt="Teacher Name">
+                    <h3>Asadujjaman</h3>
+                    <p>Junior Teacher (Emglish)</p>
+                </div>
+                <div class="faculty-card">
+                    <img src="https://i.postimg.cc/JhrhycvP/Masud.jpg" alt="Teacher Name">
+                    <h3>Md: Masudur Rahman</h3>
+                    <p>Junior Maulvi</p>
+                </div>
+                <div class="faculty-card">
+                    <img src="https://i.postimg.cc/zG0yFcn9/Riyajul.jpg" alt="Teacher Name">
+                    <h3>Md: Riyajul Islam</h3>
+                    <p>Ebtedayi Karri</p>
+                </div>
+                <div class="faculty-card">
+                    <img src="https://i.postimg.cc/mDnSJLKM/Nishat.jpg" alt="Teacher Name">
+                    <h3>Nishat Sultana</h3>
+                    <p>Office Assistant</p>
+                </div>
+                <div class="faculty-card">
+                    <img src="https://i.postimg.cc/tT1nTNn8/Norujjaman.jpg" alt="Teacher Name">
+                    <h3>Md: Norujjaman</h3>
+                    <p>M.LS.S.</p>
+                </div>
+                <div class="faculty-card">
+                    <img src="https://i.postimg.cc/zfvVtF73/Salam.jpg" alt="Teacher Name">
+                    <h3>Md:Abdus Salam<h3>
+                    <p>Night Gard</p>
+                </div>
+                
+
+            <button class="faculty-slider-nav-button faculty-prev-button">&#10094;</button>
+            <button class="faculty-slider-nav-button faculty-next-button">&#10095;</button>
+        </div>
+    </section>
+
+
+    <main style="padding: 20px; text-align: center; background-color: #f9f9f9;">
+        <h1>Thanks For Visit Our Website!</h1>
+       
+    </main>
+
+    <footer class="footer" id="contact">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>Location</h3>
+                <p></p>
+                <div class="map-container">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.93623910398!2d90.39003661502263!3d23.74836648458921!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b85a3a1656f5%3A0xb35a3a60a7719602!2sTejgaon%20College!5e0!3m2!1sen!2sbd!4v1678987654321!5m2!1sen!2sbd"
+                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                <a href="https://www.google.com/maps/place/Tejgaon+College/@23.7483665,90.3900366,17z/data=!3m1!4b1!4m6!3m5!1s0x3755b85a3a1656f5:0xb35a3a60a7719602!8m2!3d23.7483616!4d90.3926115!16s%2Fg%2F1tj54r73?entry=ttu" target="_blank" class="view-larger-map">View larger map</a>
+            </div>
+
+            <div class="footer-column">
+                <h3>About</h3>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Faculty</a></li>
+                    <li><a href="#">Events</a></li>
+                    <li><a href="#">Our Mission</a></li>
+                    <li><a href="#">Our Vision</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>Important Links</h3>
+                <ul>
+                    <li><a href="#">News & Blogs</a></li>
+                    <li><a href="#">Library</a></li>
+                    <li><a href="#">Gallery</a></li>
+                    <li><a href="#">Partners</a></li>
+                    <li><a href="#">Career</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>Sign Up For Our Newsletter</h3>
+                <p>Receive weekly newsletter with educational materials, popular books and much more!</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your e-mail">
+                    <button type="submit">Subscribe</button>
+                </form>
+                <div class="social-icons">
+                    <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-skype"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <div class="footer-call">
+                    <span>Call:</span>
+                    +8801798144072
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            &copy;  This is not affiliated with TDM | Designed and Created by <a href="https://muazabdullabd.blogspot.com/" target="_blank" rel="noopener noreferrer">Muaz Abdulla</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // Hero Slider (Main Image Slider)
+        const slider = document.querySelector('.slider');
+        const images = document.querySelectorAll('.slider img');
+        const prevButton = document.querySelector('.prev-button');
+        const nextButton = document.querySelector('.next-button');
+        const dots = document.querySelectorAll('.dot');
+
+        let currentIndex = 0;
+        let imageWidth = images[0] ? images[0].clientWidth : 0; // Check if images exist
+
+        function updateHeroImageWidth() {
+            if (images.length > 0) {
+                imageWidth = images[0].clientWidth;
+                goToHeroSlide(currentIndex);
+            }
+        }
+
+        window.addEventListener('resize', updateHeroImageWidth);
+        document.addEventListener('DOMContentLoaded', updateHeroImageWidth);
+
+        function goToHeroSlide(index) {
+            if (index < 0) {
+                currentIndex = images.length - 1;
+            } else if (index >= images.length) {
+                currentIndex = 0;
+            } else {
+                currentIndex = index;
+            }
+
+            slider.style.transform = `translateX(-${currentIndex * imageWidth}px)`;
+
+            dots.forEach((dot, i) => {
+                dot.classList.remove('active');
+                if (i === currentIndex) {
+                    dot.classList.add('active');
+                }
+            });
+        }
+
+        prevButton.addEventListener('click', () => {
+            goToHeroSlide(currentIndex - 1);
+        });
+
+        nextButton.addEventListener('click', () => {
+            goToHeroSlide(currentIndex + 1);
+        });
+
+        dots.forEach(dot => {
+            dot.addEventListener('click', (event) => {
+                const slideIndex = parseInt(event.target.dataset.slide);
+                goToHeroSlide(slideIndex);
+            });
+        });
+
+        let autoSlideInterval;
+        function startAutoSlide() {
+            autoSlideInterval = setInterval(() => {
+                goToHeroSlide(currentIndex + 1);
+            }, 5000);
+        }
+
+        function stopAutoSlide() {
+            clearInterval(autoSlideInterval);
+        }
+
+        const sliderContainer = document.querySelector('.slider-container');
+        if (sliderContainer) {
+            sliderContainer.addEventListener('mouseenter', stopAutoSlide);
+            sliderContainer.addEventListener('mouseleave', startAutoSlide);
+        }
+
+        startAutoSlide(); // Start auto-slide for hero slider
+
+
+        // Faculty Members Slider
+        const facultySlider = document.querySelector('.faculty-slider');
+        const facultyCards = document.querySelectorAll('.faculty-card');
+        const facultyPrevButton = document.querySelector('.faculty-prev-button');
+        const facultyNextButton = document.querySelector('.faculty-next-button');
+
+        let currentFacultyIndex = 0;
+        let cardsPerView = 4; // Default cards visible at once
+        let facultyCardWidth = 0; // Will be calculated dynamically
+
+        function updateFacultySliderDimensions() {
+            if (facultyCards.length > 0) {
+                // Calculate cards per view based on screen size
+                if (window.innerWidth <= 480) {
+                    cardsPerView = 1;
+                } else if (window.innerWidth <= 768) {
+                    cardsPerView = 2;
+                } else if (window.innerWidth <= 1024) {
+                    cardsPerView = 3;
+                } else {
+                    cardsPerView = 4;
+                }
+
+                // Get actual width of a single card, including its margin
+                const cardStyle = getComputedStyle(facultyCards[0]);
+                const cardMarginRight = parseFloat(cardStyle.marginRight);
+                const cardMarginLeft = parseFloat(cardStyle.marginLeft);
+                facultyCardWidth = facultyCards[0].offsetWidth + cardMarginLeft + cardMarginRight;
+
+                // Ensure the slider position is correct after resize
+                goToFacultySlide(currentFacultyIndex);
+            }
+        }
+
+        window.addEventListener('resize', updateFacultySliderDimensions);
+        document.addEventListener('DOMContentLoaded', updateFacultySliderDimensions);
+
+
+        function goToFacultySlide(index) {
+            const totalSlides = facultyCards.length;
+            const maxIndex = Math.max(0, totalSlides - cardsPerView); // Don't scroll past the last set of cards
+
+            if (index < 0) {
+                currentFacultyIndex = maxIndex; // Wrap to end
+            } else if (index > maxIndex) {
+                currentFacultyIndex = 0; // Wrap to beginning
+            } else {
+                currentFacultyIndex = index;
+            }
+
+            facultySlider.style.transform = `translateX(-${currentFacultyIndex * facultyCardWidth}px)`;
+        }
+
+        facultyPrevButton.addEventListener('click', () => {
+            goToFacultySlide(currentFacultyIndex - 1);
+        });
+
+        facultyNextButton.addEventListener('click', () => {
+            goToFacultySlide(currentFacultyIndex + 1);
+        });
+
+        // Initialize faculty slider
+        updateFacultySliderDimensions(); // Call on load to set initial dimensions
+
+    </script>
+</body>
+</html>
