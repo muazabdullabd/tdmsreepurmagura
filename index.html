@@ -689,6 +689,158 @@
             right: 0;
         }
 
+        /* Coming Soon Section */
+        .coming-soon-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            position: relative;
+            z-index: 1;
+            padding: 40px 20px;
+            
+            background: url('https://th.bing.com/th/id/OIP.v79dKYdVzfEuW_6oVTCChwHaEK?rs=1&pid=ImgDetMain') no-repeat center center fixed;
+            background-size: cover;
+            position: relative;
+        }
+        
+        .coming-soon-container {
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+            color: white;
+        }
+        
+        .coming-soon-container h1 {
+            font-family: 'Josefin Sans', sans-serif;
+    		font-weight: 400;
+            font-weight: bold;
+            font-size: 3rem;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .coming-soon-container .subtitle {
+            font-family: 'Josefin Sans', sans-serif;
+            font-weight: bold;
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            font-weight: 400;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        
+        .coming-soon-container p {
+            font-family: 'Josefin Sans', sans-serif;
+    		font-weight: 300;
+            font-weight: bold;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 40px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        
+        .transparent-countdown {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .transparent-countdown-item {
+            background-color: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            min-width: 100px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .transparent-countdown-number {
+            font-family: 'Josefin Sans', sans-serif;
+    		font-weight: 400;
+            font-weight: bold;
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .transparent-countdown-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #e74c3c;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            margin-bottom: 30px;
+        }
+        
+        .btn:hover {
+            background-color: #c0392b;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+            color: white;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .social-links a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+        
+        
+        @media (max-width: 768px) {
+            .coming-soon-container h1 {
+                font-size: 2.2rem;
+            }
+            
+            .coming-soon-container .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .transparent-countdown-item {
+                min-width: 80px;
+                padding: 15px;
+            }
+            
+            .transparent-countdown-number {
+                font-size: 2rem;
+            }
+            
+        
+
         /* Footer Styling */
         .footer {
             background-color: #060270; /* Dark blue background */
@@ -1307,8 +1459,48 @@
         </div>
     </section>
 
+     <!-- Coming Soon Section -->
+    <section class="coming-soon-section">
+        <div class="coming-soon-container" id="event">
+            <h1>Coming Event</h1>
+            <div class="subtitle">Eid-Reunion 2025</div>
+            <div class="subtitle">Date: 09 June 2025</div>
+            
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+            
+            <div class="transparent-countdown">
+                <div class="transparent-countdown-item">
+                    <div class="transparent-countdown-number">450</div>
+                    <div class="transparent-countdown-label">Days</div>
+                </div>
+                <div class="transparent-countdown-item">
+                    <div class="transparent-countdown-number">16</div>
+                    <div class="transparent-countdown-label">Hours</div>
+                </div>
+                <div class="transparent-countdown-item">
+                    <div class="transparent-countdown-number">35</div>
+                    <div class="transparent-countdown-label">Min</div>
+                </div>
+                <div class="transparent-countdown-item">
+                    <div class="transparent-countdown-number">13</div>
+                    <div class="transparent-countdown-label">Sec</div>
+                </div>
+            </div>
+            
+            <a href="https://forms.gle/ekCkv5s1cNsLN4Rt6" class="btn">Get Your Tickets</a>
+            
+            <div class="social-links">
+                <a href="https://www.facebook.com/groups/436473872230545/?ref=share&mibextid=NSMWBT" class="facebook" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="twitter" title="Twitter"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" class="instagram" title="Instagram"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" class="linkedin" title="LinkedIn"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </section>
+                   
 
-    <main style="padding: 20px; text-align: center; background-color: #f9f9f9;">
+
+    <main style="padding: 20px; text-align: center; background-color: #f9f9f9; font-family: 'Josefin Sans', sans-serif; font-weight: 400; font-weight: bold;">
         <h1>Thanks For Visit Our Website!</h1>
        
     </main>
@@ -1512,6 +1704,28 @@
 
         // Initialize faculty slider
         updateFacultySliderDimensions(); // Call on load to set initial dimensions
+
+        // Countdown timer functionality
+        function updateCountdown() {
+            // Set your event date here (YYYY, MM-1, DD)
+            const eventDate = new Date(2025, 05, 09);
+            const now = new Date();
+            const diff = eventDate - now;
+            
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            document.querySelector('.transparent-countdown-number:nth-child(1)').textContent = days;
+            document.querySelector('.transparent-countdown-number:nth-child(2)').textContent = hours;
+            document.querySelector('.transparent-countdown-number:nth-child(3)').textContent = minutes;
+            document.querySelector('.transparent-countdown-number:nth-child(4)').textContent = seconds;
+        }
+        
+        // Update countdown every second
+        setInterval(updateCountdown, 1000);
+        updateCountdown(); // Initial call
 
     </script>
 </body>
